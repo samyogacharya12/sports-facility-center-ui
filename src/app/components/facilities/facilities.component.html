@@ -1,31 +1,62 @@
-<div class="container mt-4">
-  <h2 class="text-center mb-4">Available Facilities</h2>
+<div class="home-container">
+  <!-- Welcome Section -->
+  <div class="welcome-section text-center py-4">
+    <h1>Welcome to the Sports Facility Center</h1>
+    <p>Book, manage, and enjoy your favorite sports facilities easily!</p>
 
-  <div *ngIf="facilities.length === 0" class="text-center text-muted">
-    No facilities available at the moment.
+    <div class="button-group mt-3 d-flex justify-content-center">
+      <button mat-raised-button color="primary" routerLink="/login">
+        Bookings
+      </button>
+    </div>
   </div>
 
-  <div class="row">
-    <div class="col-md-4 mb-4" *ngFor="let facility of facilities">
-      <div class="card shadow-sm" style="margin-left: 20px;">
-           <img src="assets/tennis.jpeg" class="card-img-top" alt="Facility image">
- 
-        <div class="card-body">
-          <h5 class="card-title">{{ facility.facilityName }}</h5>
+  <!-- Facilities Section -->
+  <div class="facilities-section text-center mt-5">
+    <h2 class="facilities-title mb-4">Available Facilities</h2>
+
+    <div *ngIf="facilities.length === 0" class="text-center text-muted">
+      No facilities available at the moment.
+    </div>
+
+    <!-- ✅ Use grid layout for 3 per row -->
+    <div class="facilities-grid">
+      <div class="facility-card shadow-sm" *ngFor="let facility of facilities">
+        <img
+          src="assets/tennis.jpeg"
+          class="facility-image"
+          alt="Facility image"
+        />
+
+        <div class="card-body text-center">
+          <h3 class="card-title">
+            <b>{{ facility.facilityName }}</b>
+          </h3>
           <p class="card-text text-muted">{{ facility.description }}</p>
           <p><strong>Opening Time:</strong> {{ facility.openingTime }}</p>
           <p><strong>Closing Time:</strong> {{ facility.closingTime }}</p>
 
-               <div *ngIf="facility.timeSlots?.length">
-            <h6 class="fw-semibold mt-3">Available Slots:</h6>
-            <div class="d-flex flex-wrap gap-2">
+          <div *ngIf="facility.timeSlots?.length">
+            <h3 class="fw-semibold mt-3">Available Slots:</h3>
+            <div class="slots-container d-flex flex-wrap justify-content-center">
               <span
-                *ngFor="let slot of facility.timeSlots"
-                class="badge bg-success p-2">
-                {{ slot.start }} - {{ slot.end }} <br>
-                </span>
+                *ngFor="let slot of facility.timeSlots; let i = index"
+                class="badge bg-success p-2 m-1"
+              >
+                {{ slot.start }} - {{ slot.end }}
+
+                     <button
+            mat-raised-button
+            color="primary"
+            routerLink="/login"
+            class="mt-3"
+          >
+            Book
+          </button> <br/>
+              </span>
             </div>
           </div>
+
         </div>
       </div>
     </div>

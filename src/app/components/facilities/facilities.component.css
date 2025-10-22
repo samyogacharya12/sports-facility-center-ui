@@ -1,11 +1,108 @@
-.card {
+/* Overall container styling */
+.home-container {
+  padding: 40px 20px;
+  background-color: #f9fafc;
+}
+
+/* Welcome Section (centered) */
+.welcome-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.welcome-section h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #1a1a1a;
+}
+
+.welcome-section p {
+  font-size: 1.1rem;
+  color: #555;
+  margin-top: 8px;
+}
+
+/* Center button */
+.button-group {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Facilities Section */
+.facilities-section {
+  text-align: center;
+}
+
+.facilities-title {
+  font-weight: 600;
+  color: #1a1a1a;
+  margin-bottom: 30px;
+}
+
+/* ✅ 3 cards per row grid layout */
+.facilities-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 per row */
+  gap: 30px;
+  justify-items: center;
+}
+
+/* Responsive: 2 per row on medium, 1 per row on mobile */
+@media (max-width: 992px) {
+  .facilities-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .facilities-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Facility Card */
+.facility-card {
+  width: 100%;
+  max-width: 500px;
   border-radius: 12px;
-  transition: transform 0.2s ease-in-out;
+  background: #fff;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-.card:hover {
-  transform: scale(1.03);
+
+.facility-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
 }
-.card-img-top {
+
+/* Facility Image */
+.facility-image {
+  width: 100%;
   height: 200px;
   object-fit: cover;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+}
+
+.card-body {
+  padding: 15px;
+}
+
+/* Slot badges */
+.slots-container .badge {
+  font-size: 0.9rem;
+  border-radius: 6px;
+  margin: 2px; /* spacing around each slot */
+  padding: 2px;
+  display: inline-block;
+  text-align: center;
+}
+
+button[mat-raised-button] {
+  font-weight: 600;
+  border-radius: 8px;
 }
