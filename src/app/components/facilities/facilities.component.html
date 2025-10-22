@@ -1,0 +1,33 @@
+<div class="container mt-4">
+  <h2 class="text-center mb-4">Available Facilities</h2>
+
+  <div *ngIf="facilities.length === 0" class="text-center text-muted">
+    No facilities available at the moment.
+  </div>
+
+  <div class="row">
+    <div class="col-md-4 mb-4" *ngFor="let facility of facilities">
+      <div class="card shadow-sm" style="margin-left: 20px;">
+           <img src="assets/tennis.jpeg" class="card-img-top" alt="Facility image">
+ 
+        <div class="card-body">
+          <h5 class="card-title">{{ facility.facilityName }}</h5>
+          <p class="card-text text-muted">{{ facility.description }}</p>
+          <p><strong>Opening Time:</strong> {{ facility.openingTime }}</p>
+          <p><strong>Closing Time:</strong> {{ facility.closingTime }}</p>
+
+               <div *ngIf="facility.timeSlots?.length">
+            <h6 class="fw-semibold mt-3">Available Slots:</h6>
+            <div class="d-flex flex-wrap gap-2">
+              <span
+                *ngFor="let slot of facility.timeSlots"
+                class="badge bg-success p-2">
+                {{ slot.start }} - {{ slot.end }} <br>
+                </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
