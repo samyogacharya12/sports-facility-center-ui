@@ -4,10 +4,14 @@
     <h1>Welcome to the Sports Facility Center</h1>
     <p>Book, manage, and enjoy your favorite sports facilities easily!</p>
 
-    <div class="button-group mt-3 d-flex justify-content-center">
-      <button mat-raised-button color="primary" routerLink="/login">
-        Bookings
-      </button>
+      <div class="button-group mt-3">
+      <button mat-raised-button color="primary" routerLink="/login">Sign In</button>
+      <button mat-stroked-button color="accent" routerLink="/register">Sign Up</button>
+   <button mat-raised-button  color="primary" [routerLink]="['/bookings', 'samyogacharya12']">
+     Bookings
+</button>            
+<button mat-raised-button color="primary"  routerLink="/facilities">Facilities</button>
+
     </div>
   </div>
 
@@ -19,7 +23,6 @@
       No facilities available at the moment.
     </div>
 
-    <!-- ✅ Use grid layout for 3 per row -->
     <div class="facilities-grid">
       <div class="facility-card shadow-sm" *ngFor="let facility of facilities">
         <img

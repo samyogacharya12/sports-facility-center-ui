@@ -1,21 +1,55 @@
-<div class="container mt-4">
-  <h2 class="text-center mb-4">My Bookings</h2>
+
+<div class="home-container">
+  <!-- Welcome Section -->
+  <div class="welcome-section text-center py-4">
+    <h1>Welcome to the Sports Facility Center</h1>
+    <p>Book, manage, and enjoy your favorite sports facilities easily!</p>
+
+    <div class="button-group mt-3">
+      <button mat-raised-button color="primary" routerLink="/login">Sign In</button>
+      <button mat-stroked-button color="accent" routerLink="/register">Sign Up</button>
+   <button mat-raised-button  color="primary" [routerLink]="['/bookings', 'samyogacharya12']">
+     Bookings
+</button>            
+<button mat-raised-button color="primary"  routerLink="/facilities">Facilities</button>
+
+    </div>
+  </div>
+
+<div class="bookings-section text-center mt-5">
+  <h2 class="bookings-title mb-4">My Bookings</h2>
 
   <div *ngIf="bookings.length === 0" class="text-center text-muted">
     No bookings found.
   </div>
 
-  <div class="row" *ngIf="bookings.length > 0">
-    <div class="col-md-4 mb-3" *ngFor="let booking of bookings">
-      <div class="card shadow-sm">
-        <img [src]="booking.imageUrl" class="card-img-top" alt="Facility Image" /> 
-        <div class="card-body">
-          <h5 class="card-title">{{ booking.facilityName }}</h5>
-          <p><strong>Date:</strong> {{ booking.bookingDate | date }}</p>
-          <p><strong>Time:</strong> {{ booking.startTime }} - {{ booking.endTime }}</p>
-          <p><strong>Status:</strong> <span class="badge bg-info">{{ booking.bookingStatus }}</span></p>
-        </div>
+  <!-- Single column layout -->
+  <div class="bookings-list">
+    <div class="booking-card shadow-sm" *ngFor="let booking of bookings">
+      <img
+        [src]="booking.imageUrl"
+        class="booking-image"
+        alt="Facility Image"
+      />
+      <div class="card-body text-center">
+        <h3 class="card-title"><b>{{ booking.facilityName }}</b></h3>
+        <p><strong>Date:</strong> {{ booking.bookingDate | date }}</p>
+        <p><strong>Time:</strong> {{ booking.startTime }} - {{ booking.endTime }}</p>
+        <p>
+          <strong>Status:</strong>
+          <span
+            class="badge"
+            [ngClass]="{
+              'bg-success': booking.bookingStatus === 'BOOKED',
+              'bg-warning': booking.bookingStatus === 'HALF_BOOKED',
+            }"
+          >
+            {{ booking.bookingStatus }}
+          </span>
+        </p>
       </div>
     </div>
   </div>
 </div>
+</div>
+

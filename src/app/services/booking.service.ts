@@ -15,7 +15,7 @@ export class BookingService {
 getUserBookings(username: string): Observable<any[]> {
   const token = localStorage.getItem('token'); // or wherever you store it
   const headers = new HttpHeaders({
-    'Authorization': `Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzYW15b2dhY2hhcnlhMTIiLCJpYXQiOjE3NjEyODc1NDEsImV4cCI6MTc2MTI4OTM0MX0.vXgVZphX0ButqtTgk_ylEAKkwqgBpOh5PEEQvEVzwCw`,
+    'Authorization': `Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzYW15b2dhY2hhcnlhMTIiLCJpYXQiOjE3NjEzMjIyMzEsImV4cCI6MTc2MTMyNDAzMX0.OpiQ_K5xqrFVmTJ4aBRuoMsBvfvgizZb-5eRT5m6Rfo`,
     'Content-Type': 'application/json'
   });
 
