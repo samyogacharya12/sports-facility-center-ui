@@ -22,12 +22,6 @@ export class AppComponent implements OnInit {
     if (this.isLoggedIn) {
       this.username = this.authService.getUsername();
       console.log('Logged in username:', this.username);
-    if (!localStorage.getItem('reloaded')) {
-  localStorage.setItem('reloaded', 'true');
-  window.location.reload();
-} else {
-  localStorage.removeItem('reloaded');
-}
     }
   }
 

@@ -107,14 +107,15 @@ facilities: Facility[] = [];
      facility.imageUrl = this.cleanAssetPath(facility.imageUrl || '');
      console.log(`Cleaned image URL for facility ${facility.imageUrl}`);
    });
-    const hasReloaded = localStorage.getItem('hasReloaded');
-    if (!hasReloaded) {
-      console.log('Reloading the page to load assets correctly.');
-      localStorage.setItem('hasReloaded', 'true');
-    } else {
-            console.log('Reloading the else page to load assets correctly.');
-      localStorage.removeItem('hasReloaded');
-    }
+   console.log(localStorage.getItem('reload'));
+   if (localStorage.getItem('reload') === "true") {
+    console.log("reloading");
+     localStorage.setItem('reload', "false");
+     window.location.reload();
+   }  else {
+        console.log("stopping reload");
+       localStorage.removeItem('reload');
+   }  
 
 
    // this.loadFacilities();
