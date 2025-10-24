@@ -7,8 +7,10 @@
     <div class="button-group mt-3">
       <button mat-raised-button color="primary" routerLink="/login">Sign In</button>
       <button mat-stroked-button color="accent" routerLink="/register">Sign Up</button>
-      <button mat-raised-button color="primary" routerLink="/login">Bookings</button>
-            <button mat-raised-button color="primary">Facilities</button>
+   <button mat-raised-button  color="primary" [routerLink]="['/bookings', 'samyogacharya12']">
+     Bookings
+</button>            
+<button mat-raised-button color="primary">Facilities</button>
 
     </div>
   </div>

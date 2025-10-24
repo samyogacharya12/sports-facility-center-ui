@@ -1,0 +1,21 @@
+<div class="container mt-4">
+  <h2 class="text-center mb-4">My Bookings</h2>
+
+  <div *ngIf="bookings.length === 0" class="text-center text-muted">
+    No bookings found.
+  </div>
+
+  <div class="row" *ngIf="bookings.length > 0">
+    <div class="col-md-4 mb-3" *ngFor="let booking of bookings">
+      <div class="card shadow-sm">
+        <img [src]="booking.imageUrl" class="card-img-top" alt="Facility Image" /> 
+        <div class="card-body">
+          <h5 class="card-title">{{ booking.facilityName }}</h5>
+          <p><strong>Date:</strong> {{ booking.bookingDate | date }}</p>
+          <p><strong>Time:</strong> {{ booking.startTime }} - {{ booking.endTime }}</p>
+          <p><strong>Status:</strong> <span class="badge bg-info">{{ booking.bookingStatus }}</span></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

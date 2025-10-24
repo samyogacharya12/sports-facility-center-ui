@@ -18,6 +18,7 @@ import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
 import { HomeComponent } from './home/home.component';
 import { FacilitiesComponent } from './components/facilities/facilities.component';
+import { BookingListComponent } from './components/booking-list/booking-list.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { FacilitiesComponent } from './components/facilities/facilities.componen
     LoginComponent,
     RegisterComponent,
     HomeComponent,
-    FacilitiesComponent
+    FacilitiesComponent,
+    BookingListComponent
   ],
   imports: [
    BrowserModule,

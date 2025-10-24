@@ -2,12 +2,12 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { tap } from 'rxjs/operators';
-
+import { User } from '../models/user.model';
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  private baseUrl = 'http://localhost:8080/users'; // your Spring Boot API base
+  private baseUrl = 'http://localhost:8090/users'; // your Spring Boot API base
   private loggedIn = new BehaviorSubject<boolean>(this.hasToken());
 
   constructor(private http: HttpClient) {}
@@ -43,5 +43,9 @@ export class AuthService {
 
   private hasToken(): boolean {
     return !!localStorage.getItem('token');
+  }
+
+  getUserByUsername(username: string): Observable<User> {
+    return this.http.get<User>(`${this.baseUrl}/users/username/${username}`);
   }
 }

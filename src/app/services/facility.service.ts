@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class FacilityService {
 
-  private baseUrl = 'http://localhost:8080/api/facilities'; // your Spring Boot endpoint
+  private baseUrl = 'http://localhost:8090/api/facilities'; // your Spring Boot endpoint
 
   constructor(private http: HttpClient) {}
 
