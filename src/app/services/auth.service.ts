@@ -13,9 +13,11 @@ export class AuthService {
   constructor(private http: HttpClient) {}
 
   login(credentials: { userName: string; password: string }): Observable<any> {
+      localStorage.setItem('username', credentials.userName);
     return this.http.post(`${this.baseUrl}/login`, credentials).pipe(
       tap((response: any) => {
-        localStorage.setItem('token', response.token);
+        localStorage.setItem('token', response.detail.token);
+
         this.loggedIn.next(true);
       })
     );
@@ -34,11 +36,16 @@ export class AuthService {
 
   logout() {
     localStorage.removeItem('token');
+    localStorage.removeItem('username');
     this.loggedIn.next(false);
   }
 
   isLoggedIn(): boolean {
     return this.loggedIn.value;
+  }
+
+  getUsername(): string {
+    return localStorage.getItem('username') || '';
   }
 
   private hasToken(): boolean {

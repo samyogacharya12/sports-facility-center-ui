@@ -6,16 +6,21 @@ import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
-import { HttpClientModule } from '@angular/common/http';  // ✅ Import this
-import { ReactiveFormsModule } from '@angular/forms';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';  // Import ReactiveFormsModule
+import { HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+// ✅ Angular Material Modules
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { FormsModule } from '@angular/forms';
+import { MatIconModule } from '@angular/material/icon';
+import { MatMenuModule } from '@angular/material/menu';
+
+// ✅ Components
 import { HomeComponent } from './home/home.component';
 import { FacilitiesComponent } from './components/facilities/facilities.component';
 import { BookingListComponent } from './components/booking-list/booking-list.component';
@@ -27,24 +32,29 @@ import { BookingListComponent } from './components/booking-list/booking-list.com
     RegisterComponent,
     HomeComponent,
     FacilitiesComponent,
-    BookingListComponent
+    BookingListComponent,
   ],
   imports: [
-   BrowserModule,
+    BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
-        MatToolbarModule,
+    BrowserAnimationsModule,
+
+    // ✅ Material modules belong here
+    MatToolbarModule,
     MatButtonModule,
     MatCardModule,
     MatTabsModule,
     MatFormFieldModule,
     MatInputModule,
-    BrowserAnimationsModule// ✅ Add this
-
+    MatIconModule,
+    MatMenuModule,
   ],
-  providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }],
-  bootstrap: [AppComponent]
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+  ],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

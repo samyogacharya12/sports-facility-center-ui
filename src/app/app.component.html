@@ -1,2 +1,22 @@
 
+
+<div *ngIf="isLoggedIn" class="user-menu">
+  <button
+    mat-button
+    [matMenuTriggerFor]="userMenu"
+    class="username-btn"
+  >
+    <mat-icon>account_circle</mat-icon>
+    {{ username }}
+    <mat-icon>arrow_drop_down</mat-icon>
+  </button>
+
+  <mat-menu #userMenu="matMenu">
+    <button mat-menu-item (click)="logout()">
+      <mat-icon>logout</mat-icon>
+      Logout
+    </button>
+  </mat-menu>
+</div>
+
 <router-outlet></router-outlet>

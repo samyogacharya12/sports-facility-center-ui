@@ -107,8 +107,18 @@ facilities: Facility[] = [];
      facility.imageUrl = this.cleanAssetPath(facility.imageUrl || '');
      console.log(`Cleaned image URL for facility ${facility.imageUrl}`);
    });
-   
+    const hasReloaded = localStorage.getItem('hasReloaded');
+    if (!hasReloaded) {
+      console.log('Reloading the page to load assets correctly.');
+      localStorage.setItem('hasReloaded', 'true');
+    } else {
+            console.log('Reloading the else page to load assets correctly.');
+      localStorage.removeItem('hasReloaded');
+    }
+
+
    // this.loadFacilities();
+
  }
 
 
