@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { BookingService } from '../../services/booking.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 
 @Component({
@@ -11,15 +12,18 @@ import { BookingService } from '../../services/booking.service';
 export class BookingListComponent implements OnInit {
   username!: string;
   bookings: any[] = [];
+  isLoggoedIn = false;
 
   constructor(
     private route: ActivatedRoute,
-    private bookingService: BookingService
+    private bookingService: BookingService,
+    private authService:AuthService
   ) {}
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
       this.username = params.get('username')!;
+      this.isLoggoedIn = this.authService.isLoggedIn();
       console.log('Fetched username from route:', this.username);
       this.loadBookings();
     });

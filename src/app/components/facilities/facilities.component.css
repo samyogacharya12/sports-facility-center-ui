@@ -1,4 +1,25 @@
 /* Overall container styling */
+.date-input {
+  width: 250px;
+  padding: 8px 12px;
+  font-weight: 600; /* makes the text bold */
+  font-size: 16px;  /* slightly larger text */
+  border: 2px solid #1976d2; /* thicker blue border */
+  border-radius: 8px;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.date-input:focus {
+  border-color: #0d47a1; /* darker blue on focus */
+  box-shadow: 0 0 6px rgba(25, 118, 210, 0.4);
+}
+
+.date-input:hover {
+  border-color: #2196f3; /* lighter border on hover */
+}
+
+
 .home-container {
   padding: 40px 20px;
   background-color: #f9fafc;

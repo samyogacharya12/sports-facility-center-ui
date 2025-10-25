@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { User } from '../models/user.model';
+import { HttpHeaders} from '@angular/common/http';
 @Injectable({
   providedIn: 'root'
 })
@@ -11,6 +12,19 @@ export class AuthService {
   private loggedIn = new BehaviorSubject<boolean>(this.hasToken());
 
   constructor(private http: HttpClient) {}
+
+
+
+  findByUsername(data: {userName: string}): Observable<User> {
+         const token = localStorage.getItem('token'); // or wherever you store it
+          const headers = new HttpHeaders({
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json'
+          });
+    return this.http.post<User>(`${this.baseUrl}/fetch/username`, data, { headers } );
+  }
+   
+
 
   login(credentials: { userName: string; password: string }): Observable<any> {
       localStorage.setItem('username', credentials.userName);
@@ -53,7 +67,4 @@ export class AuthService {
     return !!localStorage.getItem('token');
   }
 
-  getUserByUsername(username: string): Observable<User> {
-    return this.http.get<User>(`${this.baseUrl}/users/username/${username}`);
-  }
 }
