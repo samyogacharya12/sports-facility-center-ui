@@ -15,92 +15,97 @@ facilities: Facility[] = [];
 
 
  ngOnInit(): void {
+     
+    this.facilityService.getAllFacilities().subscribe({
+      next: (data:any) => (
+        this.facilities = data.detail),
+      error: (err:any) => console.error('Error fetching facilities:', err)
+    });
 
-
-      this.facilities = [
-     {
-       id: 1,
-       facilityName: 'Indoor Badminton Court',
-       description: 'Well-lit indoor badminton court with synthetic flooring and professional nets.',
-       capacity: 4,
-       imageUrl: '/home/samyog/samyog/sports-facility-center-ui/src/assets/badminton.png',
-       openingTime: '08:00 AM',
-       closingTime: '10:00 PM',
-       timeSlots: [{
-       start: '08:00',
-       end: '09:00'
-     },
-       ]
-     },
-     {
-       id: 2,
-       facilityName: 'Swimming Pool',
-       description: 'Olympic-sized pool with clean water and locker facilities. Lifeguard on duty.',
-       imageUrl: '/home/samyog/samyog/sports-facility-center-ui/src/assets/pool.jpg',
-       capacity: 20,
-       openingTime: '08:00 AM',
-       closingTime: '10:00 PM',
-       timeSlots: [{
-       start: '10:00',
-       end: '11:00'
-     },
-       ]
-     },
-     {
-       id: 4,
-       facilityName: 'Tennis Court',
-       description: 'Clay court maintained daily for high performance play.',
-       imageUrl: '/home/samyog/samyog/sports-facility-center-ui/src/assets/tennis.jpeg',
-       capacity: 2,
-       openingTime: '08:00 AM',
-       closingTime: '10:00 PM',
-       timeSlots: [{
-       start: '11:00',
-       end: '12:00'
-     },{
-       start: '12:00',
-       end: '13:00'
-     },
-       ]
-     },
-          {
-       id: 4,
-       facilityName: 'Basketball Court',
-       description: 'Clay court maintained daily for high performance play.',
-       imageUrl: '/home/samyog/samyog/sports-facility-center-ui/src/assets/tennis.jpeg',
-       capacity: 2,
-       openingTime: '08:00 AM',
-       closingTime: '10:00 PM',
-       timeSlots: [{
-       start: '11:00',
-       end: '12:00'
-     },{
-       start: '12:00',
-       end: '13:00'
-     },
-     {
-       start: '13:00',
-       end: '14:00'
-     },
-      {
-       start: '14:00',
-       end: '15:00'
-     },
-      {
-       start: '15:00',
-       end: '16:00'
-     },
-      {
-       start: '16:00',
-       end: '17:00'
-     },
-      {
-       start: '17:00',
-       end: '18:00'
-     }
-       ]
-     }
-   ];
+  //     this.facilities = [
+  //    {
+  //      id: 1,
+  //      facilityName: 'Indoor Badminton Court',
+  //      description: 'Well-lit indoor badminton court with synthetic flooring and professional nets.',
+  //      capacity: 4,
+  //      imageUrl: '/home/samyog/samyog/sports-facility-center-ui/src/assets/badminton.png',
+  //      openingTime: '08:00 AM',
+  //      closingTime: '10:00 PM',
+  //      timeSlots: [{
+  //      start: '08:00',
+  //      end: '09:00'
+  //    },
+  //      ]
+  //    },
+  //    {
+  //      id: 2,
+  //      facilityName: 'Swimming Pool',
+  //      description: 'Olympic-sized pool with clean water and locker facilities. Lifeguard on duty.',
+  //      imageUrl: '/home/samyog/samyog/sports-facility-center-ui/src/assets/pool.jpg',
+  //      capacity: 20,
+  //      openingTime: '08:00 AM',
+  //      closingTime: '10:00 PM',
+  //      timeSlots: [{
+  //      start: '10:00',
+  //      end: '11:00'
+  //    },
+  //      ]
+  //    },
+  //    {
+  //      id: 4,
+  //      facilityName: 'Tennis Court',
+  //      description: 'Clay court maintained daily for high performance play.',
+  //      imageUrl: '/home/samyog/samyog/sports-facility-center-ui/src/assets/tennis.jpeg',
+  //      capacity: 2,
+  //      openingTime: '08:00 AM',
+  //      closingTime: '10:00 PM',
+  //      timeSlots: [{
+  //      start: '11:00',
+  //      end: '12:00'
+  //    },{
+  //      start: '12:00',
+  //      end: '13:00'
+  //    },
+  //      ]
+  //    },
+  //         {
+  //      id: 4,
+  //      facilityName: 'Basketball Court',
+  //      description: 'Clay court maintained daily for high performance play.',
+  //      imageUrl: '/home/samyog/samyog/sports-facility-center-ui/src/assets/tennis.jpeg',
+  //      capacity: 2,
+  //      openingTime: '08:00 AM',
+  //      closingTime: '10:00 PM',
+  //      timeSlots: [{
+  //      start: '11:00',
+  //      end: '12:00'
+  //    },{
+  //      start: '12:00',
+  //      end: '13:00'
+  //    },
+  //    {
+  //      start: '13:00',
+  //      end: '14:00'
+  //    },
+  //     {
+  //      start: '14:00',
+  //      end: '15:00'
+  //    },
+  //     {
+  //      start: '15:00',
+  //      end: '16:00'
+  //    },
+  //     {
+  //      start: '16:00',
+  //      end: '17:00'
+  //    },
+  //     {
+  //      start: '17:00',
+  //      end: '18:00'
+  //    }
+  //      ]
+  //    }
+  //  ];
 
 
    this.facilities.forEach(facility => {
