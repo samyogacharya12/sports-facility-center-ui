@@ -35,8 +35,14 @@ bookingDto?:Booking =new Booking();
   this.bookingDto!.bookingDate = this.selectedDate;
   this.bookingDto!.bookingStatus=slotType;
   this.bookingDto!.facilityId=facilityId;
-  this.bookingDto!.startTime=startTime;
-  this.bookingDto!.endTime=endTime;
+  if(startTime)
+  {
+  this.bookingDto!.startTime=this.convertToTwoDigitHourWithSpace(startTime);
+  }
+    if(endTime)
+  {
+  this.bookingDto!.endTime=this.convertToTwoDigitHourWithSpace(endTime);
+  }
   this.bookingDto!.userId=this.userId;
 
   console.log("Booking DTO:", this.bookingDto);
@@ -60,7 +66,13 @@ bookingDto?:Booking =new Booking();
  ngOnInit(): void {
 
   this.isLoggoedIn = this.authService.isLoggedIn();
+  this.selectedDate = new Date().toISOString().split('T')[0]; // Default to today
   console.log("Is Logged In:", this.isLoggoedIn);
+    if (this.bookingDto) {
+    this.bookingDto.bookingDate = this.selectedDate;
+  } else {
+    this.bookingDto = { bookingDate: this.selectedDate };
+  }
     if(this.isLoggoedIn){
       this.userName = this.authService.getUsername();
       this.authService.findByUsername({userName: this.userName}).subscribe({
@@ -72,7 +84,7 @@ bookingDto?:Booking =new Booking();
         }
       });
     }
-  this.facilityService.getAllFacilities().subscribe({
+  this.facilityService.getFacilitiesByDate(this.bookingDto).subscribe({
     next: (data: any) => {
       this.facilities = data.detail || [];
 
@@ -167,4 +179,30 @@ convertTo12Hour(start: string, end: string) {
     end: formatTime(end)
   };
 }
+
+
+convertToTwoDigitHourWithSpace(time: string): string {
+  // Remove extra spaces
+  time = time.trim();
+
+  // Split hour, minutes, AM/PM
+  const match = time.match(/(\d{1,2}):(\d{2})\s*(AM|PM)/i);
+  if (!match) return time; // return as-is if format is unexpected
+
+  let [, hoursStr, minutes, ampm] = match;
+  const hours = hoursStr.padStart(2, '0'); // ensure 2-digit hour
+  return `${hours}:${minutes} ${ampm.toUpperCase()}`; // "02:00 PM"
+}
+
+convertTo24HourFormat(time12h: string): string {
+  const [time, modifier] = time12h.split(' ');  // e.g. "8:00", "AM"
+  let [hours, minutes] = time.split(':').map(Number);
+
+  if (modifier === 'PM' && hours !== 12) hours += 12;
+  if (modifier === 'AM' && hours === 12) hours = 0;
+
+  return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`;
+}
+
+
 }
