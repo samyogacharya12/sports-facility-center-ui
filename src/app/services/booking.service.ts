@@ -34,4 +34,13 @@ getUserBookings(username: string): Observable<any[]> {
   });
     return this.http.post(`${this.baseUrl}/booking`, bookingDto, { headers });
   }
+
+    cancelBooking(bookingDto?:Booking): Observable<any> {
+      const token = localStorage.getItem('token'); // or wherever you store it
+  const headers = new HttpHeaders({
+    'Authorization': `Bearer ${token}`,
+    'Content-Type': 'application/json'
+  });
+    return this.http.post(`${this.baseUrl}/cancel/booking`, bookingDto, { headers });
+  }
 }

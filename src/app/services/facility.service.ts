@@ -31,7 +31,7 @@ export class FacilityService {
         'Authorization': `Bearer ${token}`,
         'Content-Type': 'application/json'
       });
-    return this.http.post(`${this.baseUrl}/available-slots`, bookingData);
+    return this.http.post(`${this.baseUrl}/available-slots`, bookingData,{headers});
     }
   }
   

@@ -47,6 +47,14 @@
             {{ booking.bookingStatus }}
           </span>
         </p>
+           <button
+            mat-raised-button
+            color="warn"
+            (click)="cancelBooking(booking)"
+            [disabled]="booking.bookingStatus === 'CANCELLED'"
+          >
+            Cancel Booking
+          </button>
       </div>
     </div>
   </div>
