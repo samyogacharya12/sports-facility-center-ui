@@ -77,6 +77,7 @@
             color="primary"
             (click)="book(slot.slotType, facility.id, slot.start, slot.end)"
             class="mt-3"
+            [disabled]="disabled"
           >
             Book
           </button> <br/>

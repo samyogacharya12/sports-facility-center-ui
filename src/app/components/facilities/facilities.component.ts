@@ -20,6 +20,7 @@ userDto?:any;
 userId?:number;
 selectedDate: string = ''; // holds the selected date
 bookingDto?:Booking =new Booking();
+disabled = false;
 
  constructor(private authService:AuthService, 
              private userAuthService:AuthService, 
@@ -118,11 +119,21 @@ bookingDto?:Booking =new Booking();
  }
 
 fetchFacilitiesByDate(): void {
+    const todayDate = new Date().toISOString().split('T')[0];
+    if(this.selectedDate < todayDate){
+        this.disabled = true;
+    } else {
+        this.disabled = false;
+    }
+  console.log('Is booking disabled?', this.disabled);
   if (!this.selectedDate) {
     console.warn('No date selected. Skipping facility fetch.');
     return;
   }
 
+  if(this.disabled){
+        alert('Selected date should be greater or equal to today. disabling the booking option');
+  } 
   // Attach selected date to booking DTO
   if (this.bookingDto) {
     this.bookingDto.bookingDate = this.selectedDate;
