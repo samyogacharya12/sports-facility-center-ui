@@ -7,7 +7,7 @@
     <div class="button-group mt-3">
       <button *ngIf="!isLoggoedIn"  mat-raised-button color="primary" routerLink="/login">Sign In</button>
       <button *ngIf="!isLoggoedIn"  mat-stroked-button color="accent" routerLink="/register">Sign Up</button>
-   <button  mat-raised-button  color="primary" [routerLink]="['/bookings', this.username]" *ngIf="isLoggoedIn">
+   <button  mat-raised-button  color="primary" [routerLink]="['/bookings', this.username]">
      Bookings
 </button>            
 <button mat-raised-button color="primary" routerLink="/facilities">Facilities</button>
